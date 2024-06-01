@@ -2,9 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-const users = [{ id: 1, username: 'admin', password: '123456' }];
-
-export const login = async (formData: FormData) => {
+export default async function login(formData: FormData) {
   const res = await fetch('http://localhost:3000/api/login', {
     method: 'POST',
     headers: {
@@ -25,4 +23,4 @@ export const login = async (formData: FormData) => {
     return { message: res.text(), status: res.status };
   }
   return { message: res.text(), status: res.status };
-};
+}

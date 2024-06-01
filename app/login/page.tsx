@@ -1,7 +1,7 @@
 'use client';
 
-import { login } from '@/app/serverActions/login';
-import { FormButton } from '@/components/auth/FormButton';
+import login from '@/app/serverActions/login';
+import FormButton from '@/components/auth/FormButton';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { cookies } from 'next/headers';
-import { LoginButton } from './LoginButton';
+import LoginButton from './LoginButton';
 
-export function Navbar() {
+export default function Navbar() {
   const token = cookies().get('token');
 
   return (
