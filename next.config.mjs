@@ -5,7 +5,7 @@ const nextConfig = {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
-  output: "export",
+  // output: "export",
 };
 
 export default nextConfig;
