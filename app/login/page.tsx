@@ -28,7 +28,12 @@ function Login() {
     <div className="w-full h-full flex items-center justify-center">
       <form
         name="auth-form"
-        action={handleSubmitForm}
+        // action={handleSubmitForm}
+        onSubmit={(e) => {
+          e.preventDefault();
+          const formData = new FormData(e.currentTarget);
+          handleSubmitForm(formData);
+        }}
         className="space-y-4 p-8 bg-slate-700 rounded-md"
       >
         {message && (

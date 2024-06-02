@@ -3,6 +3,7 @@ import { NextRequest } from 'next/server';
 const users = [{ id: 1, username: 'admin', password: '123456' }];
 
 export async function POST(request: NextRequest) {
+  console.log('brow');
   const data = await request.json();
   const user = users.find(
     (user) => user.username === data.username && user.password === data.password,
