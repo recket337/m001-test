@@ -4,12 +4,13 @@ import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   const authСookie = cookies().get("token");
+  console.log('TRIGGER')
 
-  if (!authСookie) {
-    const loginUrl = new URL('/login', request.url);
-    loginUrl.searchParams.set('next', request.nextUrl.pathname);
-    return NextResponse.redirect(loginUrl);
-  }
+  // if (!authСookie) {
+  //   const loginUrl = new URL('/login', request.url);
+  //   loginUrl.searchParams.set('next', request.nextUrl.pathname);
+  //   return NextResponse.redirect(loginUrl);
+  // }
 
   return NextResponse.next();
 }
