@@ -1,7 +1,7 @@
 import { useFormStatus } from 'react-dom';
 
 export default function FormButton({ children = '' } : { children?: React.ReactNode; }) {
-  const { pending } = useFormStatus();
+  // const { pending } = useFormStatus();
 
   return (
     <button
@@ -10,9 +10,9 @@ export default function FormButton({ children = '' } : { children?: React.ReactN
     >
       <div className="flex items-center justify-center gap-2">
         <div>{children}</div>
-        {pending && (
+        {/* {pending && (
           <div className="h-[20px] w-[20px] rounded-full border-[2px] border-white border-t-transparent animate-spin" />
-        )}
+        )} */}
       </div>
     </button>
   );

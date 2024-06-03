@@ -3,8 +3,8 @@
 import { cookies } from 'next/headers';
 
 export default async function login(formData: FormData) {
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
-  const res = await fetch(`http//localhost:3000/api/login`, {
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? 's//' + process.env.NEXT_PUBLIC_VERCEL_URL : "//localhost:3000";
+  const res = await fetch(`http${baseUrl}/api/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
