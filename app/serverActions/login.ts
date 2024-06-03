@@ -11,7 +11,7 @@ function getBaseUrl() {
 
 export default async function login(formData: FormData) {
   const baseUrl = getBaseUrl();
-  console.log(`Base URL: ${baseUrl}`);
+  console.log(`Base URL: ${baseUrl}/api/login`);
   const res = await fetch(`${baseUrl}/api/login`, {
     method: 'POST',
     headers: {
@@ -29,6 +29,7 @@ export default async function login(formData: FormData) {
       value: 'success',
       // maxAge: 60 * 60 * 24,
     });
+    console.log('set cookie')
     return { message: res.text(), status: res.status };
   }
   return { message: res.text(), status: res.status };

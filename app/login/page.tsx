@@ -34,7 +34,7 @@ function Login() {
           if (data.status === 200) {
             setTimeout(() => {
               // router.push(nextUrl);
-              redirect('/')
+              // redirect('/')
             }, 500);
           }
         }}
