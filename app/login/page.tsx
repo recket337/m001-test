@@ -1,61 +1,46 @@
-// "use client"
+"use client"
 
-import login from '../serverActions/login';
 import FormButton from '@/components/auth/FormButton';
-import { redirect, useRouter, useSearchParams } from 'next/navigation';
-// import { useState } from 'react';
+import { redirect, useSearchParams } from 'next/navigation';
+import { authenticate } from '@/app/lib/actions'
+import { useFormState } from 'react-dom'
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-function Login() {
-  // const [status, setStatus] = useState<number>();
-  // const [message, setMessage] = useState<Promise<string>>();
-  // const searchParams = useSearchParams();
-  // const router = useRouter();
-  // const nextUrl = searchParams.get('next') || '/';
+export function Login() {
+  const searchParams = useSearchParams();
+  const nextUrl = searchParams.get('next') || '/';
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const router = useRouter()
 
-  const handleSubmitForm = async (formData: FormData) => {
-    const data = await login(formData);
-    // setStatus(data.status);
-    // setMessage(data.message);
-
-    if (data.status === 200) {
-      setTimeout(() => {
-        // router.push(nextUrl);
-      }, 500);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setErrorMessage('');
+    const formData = new FormData(event.currentTarget);
+    const res = await authenticate(formData)
+    if (res.ok) {
+      router.push(nextUrl);
+    } else {
+      setErrorMessage(res.type)
     }
-  };
+  }
 
   return (
     <div className="w-full h-full flex items-center justify-center">
       <form
         name="auth-form"
-        action={async (formData: FormData) => {
-          "use server"
-          const data = await login(formData);
-          if (data.status === 200) {
-            setTimeout(() => {
-              // router.push(nextUrl);
-              // redirect('/')
-            }, 500);
-          }
-        }}
-        // onSubmit={(e) => {
-        //   e.preventDefault();
-        //   const formData = new FormData(e.currentTarget);
-        //   handleSubmitForm(formData);
-        // }}
+        onSubmit={handleSubmit}
         className="space-y-4 p-8 bg-slate-700 rounded-md"
       >
-        {/* {message && (
+        {errorMessage && (
           <div
-            className={`${status === 401 ? 'bg-red-600' : 'bg-green-600'
-            } text-center  rounded-md text-white py-2`}
+            className={"bg-red-600 text-center  rounded-md text-white py-2"}
           >
-            {message}
+            {errorMessage}
           </div>
-        )} */}
+        )}
         <div>
           <input
-            // onChange={() => setMessage(undefined)}
             name="username"
             type="text"
             className="px-4 py-2 bg-slate-900 rounded-md focus-visible:outline-none"
@@ -64,7 +49,6 @@ function Login() {
         </div>
         <div>
           <input
-            // onChange={() => setMessage(undefined)}
             name="password"
             type="password"
             placeholder="Password"

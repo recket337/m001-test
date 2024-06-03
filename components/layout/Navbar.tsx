@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import LoginButton from './LoginButton';
 
 export default function Navbar() {
-  const token = cookies().get('token');
+  const session = cookies().get('session');
 
   return (
     <nav className="bg-slate-700">
@@ -34,7 +34,7 @@ export default function Navbar() {
         </li>
 
         <li>
-          <LoginButton token={token?.value} />
+          <LoginButton token={session?.value} />
         </li>
       </ul>
     </nav>

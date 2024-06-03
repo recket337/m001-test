@@ -1,6 +1,6 @@
 'use client';
 
-import logout from '@/app/serverActions/logout';
+import { logout } from '@/app/lib/actions';
 import { useRouter } from 'next/navigation';
 
 export default function LoginButton({ token = '' }: { token?: string }) {
