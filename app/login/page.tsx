@@ -16,9 +16,13 @@ function Login() {
     event.preventDefault();
     setErrorMessage('');
     const formData = new FormData(event.currentTarget);
-    const res = await authenticate(formData)
+    const res = await authenticate(formData);
     if (res.ok) {
-      router.push(nextUrl);
+      console.log(nextUrl)
+      setTimeout(() => {
+        router.push(nextUrl);
+      }, 0)
+      
     } else {
       setErrorMessage(res.type)
     }
