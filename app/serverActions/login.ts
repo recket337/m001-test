@@ -2,9 +2,17 @@
 
 import { cookies } from 'next/headers';
 
+function getBaseUrl() {
+  if (typeof window !== 'undefined') return '';
+  const vc = process.env.NEXT_PUBLIC_VERCEL_URL;
+  if (vc) return `https://${vc}`;
+  return 'http://localhost:3000';
+}
+
 export default async function login(formData: FormData) {
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? 's//' + process.env.NEXT_PUBLIC_VERCEL_URL : "//localhost:3000";
-  const res = await fetch(`http${baseUrl}/api/login`, {
+  const baseUrl = getBaseUrl();
+  console.log(`Base URL: ${baseUrl}`);
+  const res = await fetch(`${baseUrl}/api/login`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
