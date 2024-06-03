@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { authenticate } from '@/app/lib/actions'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { getBaseUrl } from '../utils/getBaseUrl';
 
 function Login() {
   const searchParams = useSearchParams();
@@ -21,7 +20,7 @@ function Login() {
     if (res.ok) {
       console.log(nextUrl)
       setTimeout(() => {
-        router.push(getBaseUrl() + nextUrl);
+        router.push(nextUrl);
       }, 0)
       
     } else {
