@@ -19,7 +19,7 @@ function Dashboard() {
 
   useEffect(() => {
     async function getDashboardData() {
-      const res = await fetch('http://localhost:3000/api/dashboard');
+      const res = await fetch('api/dashboard');
       if (!res.ok) {
         throw new Error('Failed to fetch data');
       }

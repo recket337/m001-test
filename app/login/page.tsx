@@ -6,7 +6,7 @@ import { authenticate } from '@/app/lib/actions'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export function Login() {
+function Login() {
   const searchParams = useSearchParams();
   const nextUrl = searchParams.get('next') || '/';
   const [errorMessage, setErrorMessage] = useState<string>('');
