@@ -1,7 +1,9 @@
-"use client"
+import { getBaseUrl } from "./utils/getBaseUrl";
 
 async function Profile() {
-  const res = await fetch('http://localhost:3000/api');
+  const baseUrl = getBaseUrl();
+
+  const res = await fetch(`${baseUrl}/api`);
 
   const data = await res.json();
 

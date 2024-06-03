@@ -18,7 +18,7 @@ function Login() {
     const formData = new FormData(event.currentTarget);
     const res = await authenticate(formData);
     if (res.ok) {
-      console.log(nextUrl)
+      console.log('RED_URL',nextUrl)
       setTimeout(() => {
         router.push(nextUrl);
       }, 0)
