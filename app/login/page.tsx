@@ -1,9 +1,8 @@
 "use client"
 
 import FormButton from '@/components/auth/FormButton';
-import { redirect, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { authenticate } from '@/app/lib/actions'
-import { useFormState } from 'react-dom'
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
