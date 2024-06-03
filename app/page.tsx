@@ -1,13 +1,23 @@
-import { getBaseUrl } from "./utils/getBaseUrl";
+'use client';
 
-async function Profile() {
-  const baseUrl = getBaseUrl();
+import { useEffect, useState } from "react";
 
-  const res = await fetch(`${baseUrl}/api`);
+function Profile() {
+  const [profileData, setProfileData] = useState({name: '', phone: ''})
 
-  const data = await res.json();
+  useEffect(() => {
+    async function getProfileData() {
+      const res = await fetch('api/');
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
 
-  if (!data) return 'Error';
+      const data = await res.json();
+      setProfileData({name: data.name, phone: data.phone});
+    }
+
+    getProfileData();
+  }, []);
 
   return (
     <div className="flex justify-center items-center flex-col h-full">
@@ -16,14 +26,14 @@ async function Profile() {
           Name:
           {' '}
         </strong>
-        {data.name}
+        {profileData.name}
       </p>
       <p>
         <strong>
           Phone:
           {' '}
         </strong>
-        {data.phone}
+        {profileData.phone}
       </p>
     </div>
   );
